@@ -1,0 +1,51 @@
+#!/bin/bash
+
+echo "Setting up python environment for seqcheck.py"
+
+py_version=$( python3 -V )
+
+if [[ $py_version != *"Python 3"* ]]
+then
+	echo "Install Python3 before continuing."
+	exit
+fi
+[ ! -d "$HOME/bin" ] && mkdir ${HOME}/bin
+installPath=$HOME/bin/"seqcheck"
+
+echo "Nice, Python3 is installed. Installing seqcheck at: $installPath"
+
+mkdir $installPath
+
+echo "Copying files now..."
+cp config.json $installPath/
+cp requirements.txt $installPath/
+cp README.md $installPath/
+cp seqcheck $installPath/
+cp run_seqcheck.py $installPath/
+cp construct_lib.csv $installPath/
+
+echo "Now, attempting to set up the virual environment..."
+pip3 install virtualenv
+
+echo "Still working..."
+virtualenv $installPath/seqcheck_env
+source $installPath/seqcheck_env/bin/activate
+pip3 install -r $installPath/requirements.txt
+
+echo "--------------------------------------"
+echo " "
+echo "Looks like the environments all set up."
+deactivate 
+
+echo "Setting up command line tool..."
+chmod +x $installPath/seqcheck
+#cp seqcheck /usr/local/bin/
+
+source $HOME/.bash_profile
+
+if [[ $PATH != *"/bin/seqcheck"* ]]
+then
+	echo "export PATH=\$PATH:\$HOME/bin/seqcheck" >> $HOME/.bash_profile
+fi
+
+

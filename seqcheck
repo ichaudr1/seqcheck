@@ -1,0 +1,44 @@
+#!/bin/bash
+source $HOME/.bash_profile
+installPath=$HOME/bin/"seqcheck"
+
+#Return the help menu if too many parameters passed.
+if [[ $# > 2 ]]
+then
+    python3 $installPath/run_seqcheck.py -h
+fi
+
+#Open config.json
+if [[ $1 == *"config"* ]]
+then
+    nano $installPath/config.json
+else
+    #Activate the environment
+    source $installPath/seqcheck_env/bin/activate
+
+    #Parse out command and paramPath
+    paramPath=''
+    command=$(echo $1 | cut -d '='  -f 1)
+
+    #Clean command
+    command=$(echo ${command//\"})
+
+    if [[ $1 == *"="* ]]
+    then
+        #Get everything after the equal sign, if it exists
+        paramPath=${1#*"="}
+        parmPath=$(echo ${parmPath//\"})
+    else
+        paramPath=$2
+    fi
+    
+    [[ $paramPath = *./* ]] && paramPath=$PWD/${paramPath#./}
+    echo "Command: "$command
+    echo "Parameters: "$paramPath
+
+    echo "Running seqcheck: $command $paramPath"
+
+    python3 $installPath/run_seqcheck.py $command $paramPath
+    deactivate
+fi
+

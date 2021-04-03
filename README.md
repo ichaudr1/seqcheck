@@ -18,7 +18,7 @@ The utility is called by typing ```seqcheck```.
 
 To check sequencing results, run ```seqcheck -p [path to directory with results]```. Make sure the construct library path is defined in the configuration file (see below). For each ```.seq``` file in the results directory, you will be asked to enter a construct to compare the sequence against. If the construct you enter does not exist exactly as entered, you will be presented with a list of constructs that are similar to the entered construct name.
 
-Note: If your sequencing results do not have ```.seq``` files in the directory, note an Issue on this repository or email (ichaudr1@umbc.edu). 
+Note: If your sequencing results do not have ```.seq``` files in the directory, note an [Issue](https://github.com/ichaudr1/seqcheck/issues) on this repository or email (ichaudr1@umbc.edu). 
 
 To add a new construct(s) to the construct library, use ```seqcheck --add_construct```. This will ask for a path to a csv file with the new constructs in this format: ```construct_name,sequence``` (see ```construct_lib.csv``` for example). These will be added to the reference construct library that is listed in the configuration file (see below). 
 

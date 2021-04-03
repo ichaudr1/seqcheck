@@ -20,7 +20,7 @@ else
     paramPath=''
     command=$(echo $1 | cut -d '='  -f 1)
 
-    #Clean command
+    #Clean command by removing quotations
     command=$(echo ${command//\"})
 
     if [[ $1 == *"="* ]]
@@ -32,11 +32,10 @@ else
         paramPath=$2
     fi
     
+    #Get the full path for the directory
     [[ $paramPath = *./* ]] && paramPath=$PWD/${paramPath#./}
-    echo "Command: "$command
-    echo "Parameters: "$paramPath
 
-    echo "Running seqcheck: $command $paramPath"
+    echo "Running seqcheck $command $paramPath"
 
     python3 $installPath/run_seqcheck.py $command $paramPath
     deactivate

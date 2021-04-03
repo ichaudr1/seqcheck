@@ -179,14 +179,17 @@ def check_sequencing(sequencing_result, construct_sequence, a_id):
 	if len(alignments) > max_alignments:
 		tqdm.write(Fore.RED + 'Too many alignments for ' + a_id + '. Trimming...')
 		Style.RESET_ALL
-		alignments_clean = [alignments[i] for i in range(max_alignments)]
+		alignments = [alignments[i] for i in range(max_alignments)]
 
-	for alignment in alignments_clean:
-
+	for alignment in alignments:
 		#Parse out alignement components
-		aligned_sequencing_result = list(str(alignment.format()).split('\n'))[0]
-		aligned_construct_sequence = list(str(alignment.format()).split('\n'))[2]
-		align_chars = list(str(alignment.format()).split('\n'))[1]
+		#aligned_sequencing_result = list(str(alignment.format()).split('\n'))[0]
+		#aligned_construct_sequence = list(str(alignment.format()).split('\n'))[2]
+		#align_chars = list(str(alignment.format()).split('\n'))[1]
+
+		aligned_sequencing_result = list(str(format(alignment)).split('\n'))[0]
+		aligned_construct_sequence = list(str(format(alignment)).split('\n'))[2]
+		align_chars = list(str(format(alignment)).split('\n'))[1]
 
 		#Calculate and print alignment statistics
 		percent_id = 100 * (align_chars.count('|')/len(aligned_construct_sequence.strip()))
@@ -246,6 +249,7 @@ def check_sequencing(sequencing_result, construct_sequence, a_id):
 		print(Fore.GREEN + str(pos_construct_sequence) + '->' + str(construct_sequence_aligned_regions[-1][-1]))
 
 		Style.RESET_ALL
+		print('\n')
 
 ##################
 #Start of pipeline
@@ -347,7 +351,7 @@ if __name__ == '__main__':
 	#Set up parser for input
 	parser = argparse.ArgumentParser()
 	group = parser.add_mutually_exclusive_group(required=True)
-	group.add_argument('--path', help='the path to the directory holding the sequencing results.')
+	group.add_argument('-p', '--path', help='the path to the directory holding the sequencing results.')
 	group.add_argument('--add_construct', help='add this flag to add a construct to the construct library.', action='store_true')
 
 	args = parser.parse_args()

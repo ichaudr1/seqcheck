@@ -52,10 +52,10 @@ The ```construct_lib``` is the path the .csv file holding a list of your constru
 
 ```construct_search_threshold``` is a parameter that defines the stringency of the search function when looking for a construct in the construct library. A lower value is more stringent and a higher value is less stringent.
 
-### Dependencies and Manual Install
+### Manual Install
 
 Download this repository to a location where you can leave it permanently. 
 
-All dependencies are listed in the ```requirements.txt``` file. You must have Python 3.X.X and a python environment set up with those dependencies. An ```conda``` or ```virtualenv``` will work. The specific instructions will vary based on platform. Once an evironemnt is set up, run ```pip3 install -r requirements.txt```. 
+All dependencies are listed in the ```requirements.txt``` file. You must have Python 3.X.X and a python environment set up with those dependencies. A ```conda``` or ```virtualenv``` will work. The specific instructions will vary based on platform. Once an evironemnt is set up, run ```pip3 install -r requirements.txt```. 
 
 Add the current directory to your path so that the ```seqcheck``` can be ran from terminal outside of the current directory. This will also vary based on platform, but for MacOS, run ```export PATH=$PATH:[current_directory]```. 

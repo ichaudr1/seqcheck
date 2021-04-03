@@ -1,10 +1,10 @@
-#seqcheck
+# seqcheck
 
-###Overview
+### Overview
 
 ```seqcheck``` is a command line utility to make it easier and faster to check sequencing results.
 
-###The Configuration File
+### The Configuration File
 
 ```json
 {

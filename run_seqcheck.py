@@ -361,7 +361,7 @@ if __name__ == '__main__':
 
 	if args.path:
 		sequencing_results_path = args.path
-		if sequencing_results_path[-1] is not '/':
+		if sequencing_results_path[-1] != '/':
 			sequencing_results_path += '/'
 		main()
 

@@ -6,9 +6,9 @@ echo "Setting up python environment for seqcheck.py"
 
 py_version=$( python3 -V )
 
-if [[ $py_version != *"Python 3"* ]]
+if [[ $py_version != *"Python 3.7"* ]]
 then
-	echo "Install Python3 before continuing."
+	echo "Install Python 3.7 (or newer) before continuing. https://www.python.org/downloads/mac-osx/"
 	exit
 fi
 
@@ -46,13 +46,17 @@ deactivate
 #Add to PATH so the executable can be called from anywhere.
 echo "Setting up command line tool..."
 chmod +x $installPath/seqcheck
-#cp seqcheck /usr/local/bin/
+sudo cp seqcheck /usr/local/bin/
+sudo chmod 755 //usr/local/bin/seqcheck
 
+#Check chmod 755  seqcheck
+
+'''
 source $HOME/.bash_profile
 
 if [[ $PATH != *"/bin/seqcheck"* ]]
 then
 	echo "export PATH=\$PATH:\$HOME/bin/seqcheck" >> $HOME/.bash_profile
-fi
+fi'''
 
 

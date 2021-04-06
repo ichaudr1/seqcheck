@@ -6,11 +6,19 @@ echo "Setting up python environment for seqcheck.py"
 
 py_version=$( python3 -V )
 
-if [[ $py_version != *"Python 3.7"* ]]
-then
-	echo "Install Python 3.7 (or newer) before continuing. https://www.python.org/downloads/mac-osx/"
+cleanVersion=$( echo $py_version | cut -d ' ' -f 2 )
+parsedVersion=$(echo "${cleanVersion//./}")
+if [[ "$parsedVersion" -lt "370" ]]
+then 
+    echo "Install Python 3.7 (or newer) before continuing. https://www.python.org/downloads/mac-osx/"
 	exit
 fi
+
+#if [[ $py_version != *"Python 3.7"* ]]
+#then
+#	echo "Install Python 3.7 (or newer) before continuing. https://www.python.org/downloads/mac-osx/"
+#	exit
+#fi
 
 #Makes the HOME/bin directory if it doesnt exist
 [ ! -d "$HOME/bin" ] && mkdir ${HOME}/bin
@@ -47,16 +55,4 @@ deactivate
 echo "Setting up command line tool..."
 chmod +x $installPath/seqcheck
 sudo cp seqcheck /usr/local/bin/
-sudo chmod 755 //usr/local/bin/seqcheck
-
-#Check chmod 755  seqcheck
-
-'''
-source $HOME/.bash_profile
-
-if [[ $PATH != *"/bin/seqcheck"* ]]
-then
-	echo "export PATH=\$PATH:\$HOME/bin/seqcheck" >> $HOME/.bash_profile
-fi'''
-
-
+sudo chmod 755 /usr/local/bin/seqcheck

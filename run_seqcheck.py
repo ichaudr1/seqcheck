@@ -84,7 +84,7 @@ def add_construct():
 	with open(construct_lib_path, 'a') as lib:
 		lib.write('\n')
 		for cname in to_write.keys():
-			lib.write(cname + ',' + to_write[cname])
+			lib.write(cname + ',' + to_write[cname] + '\n')
 
 	print('Done appending.')
 
